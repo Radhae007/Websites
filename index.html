@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sony’s Pickle — Handcrafted from South India</title>
+  <meta name="description" content="Sony’s Pickle — Authentic South Indian pickles & snacks. Clean, minimal, fast." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://images.unsplash.com/" crossorigin>
+  <link rel="icon" href="data:," />
+</head>
+<body>
+  <!-- Top fun marquee banner -->
+  <div class="top-banner" id="top-banner" role="button" tabindex="0" aria-label="Click to view products">
+    <div class="marquee">
+      <span>✨ New batch freshly made in Kanyakumari — limited stock! • Free shipping on orders above ₹799 • Taste South India in every bite! ✨</span>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <nav class="nav-left">
+      <button class="nav-toggle" aria-label="Open menu" id="menuToggle">☰</button>
+      <ul class="menu" id="menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#products" class="nav-link">Shop</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="brand" id="home">
+      <div class="logo-dot"></div>
+      <h1>Sony’s Pickle</h1>
+    </div>
+
+    <div class="nav-right">
+      <button class="cart-btn" id="cartBtn" aria-label="Open cart">
+        🛒 <span id="cartCount" class="cart-count">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero / Intro -->
+  <section class="hero">
+    <div class="hero-inner">
+      <h2>Handmade South Indian flavors — small batches, big heart.</h2>
+      <p class="muted">Authentic pickles & snacks crafted using family recipes from Kanyakumari.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#products">Shop the Collection</a>
+        <a class="btn btn-ghost" href="#about">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-image" aria-hidden="true">
+      <!-- decorative -->
+      <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=7d2b91b6c05b6a9eb31f7a2f67259a36" alt="">
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="products-section">
+    <div class="section-head">
+      <h3>Featured Products</h3>
+      <p class="muted">Pickles, powders & snacks — curated from South India.</p>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+      <!-- Product tiles injected by JS -->
+    </div>
+
+    <!-- Reviews -->
+    <div class="reviews">
+      <h4>Customer Reviews</h4>
+      <div id="reviewsList" class="reviews-list">
+        <!-- sample reviews -->
+        <blockquote class="review">
+          <p>"The Chicken Pickle is perfectly spiced — takes me back home. Highly recommend!"</p>
+          <cite>— Asha, Chennai</cite>
+        </blockquote>
+        <blockquote class="review">
+          <p>"Banana chips are crispy and not oily. Great texture and flavour." </p>
+          <cite>— Jonathan, Bangalore</cite>
+        </blockquote>
+        <blockquote class="review">
+          <p>"Quick delivery and packaging was excellent. Loved the coconut gunpowder." </p>
+          <cite>— Sangeetha, Madurai</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="about-section">
+    <div class="about-inner">
+      <h3>About Sony’s Pickle</h3>
+      <p class="muted">A short brand backstory goes here — (you can paste the final content and we'll integrate it). We focus on small-batch, preservative-free pickles and handmade snacks inspired by South Indian coastal recipes.</p>
+      <ul class="about-features">
+        <li>Small-batch, handcrafted</li>
+        <li>No artificial preservatives</li>
+        <li>Fresh local ingredients</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact-section">
+    <h3>Contact</h3>
+    <p class="muted">Questions? Collaborations? Drop us a message.</p>
+    <form id="contactForm" class="contact-form" onsubmit="event.preventDefault(); alert('Thanks! We will reply shortly.');">
+      <input type="text" placeholder="Your name" required />
+      <input type="email" placeholder="Your email" required />
+      <textarea placeholder="Message" rows="4" required></textarea>
+      <button class="btn btn-primary" type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <h4>Sony’s Pickle</h4>
+        <p class="muted">Origin: South India • Kanyakumari</p>
+      </div>
+      <div>
+        <h5>Follow</h5>
+        <div class="socials">
+          <a href="#" aria-label="Facebook">Facebook</a>
+          <a href="#" aria-label="Instagram">Instagram</a>
+          <a href="#" aria-label="X">X</a>
+        </div>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <p class="muted">hello@sonyspickle.example • +91 98765 43210</p>
+      </div>
+    </div>
+    <div class="copyright">© <span id="year"></span> Sony’s Pickle — All rights reserved.</div>
+  </footer>
+
+  <!-- Product Modal -->
+  <div class="modal" id="productModal" aria-hidden="true" role="dialog">
+    <div class="modal-content" role="document">
+      <button class="modal-close" id="modalClose" aria-label="Close">✕</button>
+      <div class="modal-body" id="modalBody">
+        <!-- injected -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" role="region" aria-label="Shopping cart">
+    <div class="cart-header">
+      <h4>Your Cart</h4>
+      <button id="closeCart" aria-label="Close cart">✕</button>
+    </div>
+    <div class="cart-content" id="cartContent">
+      <!-- injected -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-totals">
+        <div>Subtotal:</div>
+        <div id="cartSubtotal">₹0</div>
+      </div>
+      <button id="checkoutBtn" class="btn btn-primary">Checkout</button>
+      <button id="clearCart" class="btn btn-ghost">Clear Cart</button>
+    </div>
+  </aside>
+
+  <!-- Checkout Modal -->
+  <div class="modal" id="checkoutModal" aria-hidden="true" role="dialog">
+    <div class="modal-content small" role="document">
+      <button class="modal-close" id="checkoutClose" aria-label="Close">✕</button>
+      <div class="modal-body">
+        <h3>Checkout</h3>
+        <form id="checkoutForm">
+          <label>
+            Full name
+            <input type="text" required id="custName" />
+          </label>
+          <label>
+            Phone / UPI ID
+            <input type="text" required id="custUPI" />
+          </label>
+          <label>
+            Payment method
+            <select id="payMethod">
+              <option value="upi">UPI</option>
+              <option value="card">Card</option>
+              <option value="cod">Other</option>
+            </select>
+          </label>
+
+          <div id="cardFields" style="display:none">
+            <label>Card number<input type="text" placeholder="4242 4242 4242 4242" /></label>
+            <label>Expiry<input type="text" placeholder="MM/YY" /></label>
+            <label>CVC<input type="text" placeholder="CVC" /></label>
+          </div>
+
+          <div class="checkout-actions">
+            <button class="btn btn-primary" type="submit">Pay Now</button>
+            <button class="btn btn-ghost" type="button" id="cancelCheckout">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
