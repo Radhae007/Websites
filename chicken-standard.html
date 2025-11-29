@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sony's Pickle - Chicken Pickle Standard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f9f9f9;
+        color: #000000;
+        line-height: 1.6;
+      }
+
+      /* Running header */
+      .banner {
+        width: 100%;
+        overflow: hidden;
+        background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
+        padding: 14px 0;
+        position: relative;
+        box-shadow: 0 2px 8px rgba(241, 196, 15, 0.2);
+      }
+      .banner::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.1);
+      }
+      .banner marquee { 
+        font-size: 0.95rem; 
+        font-weight: 600;
+        color: #000;
+        letter-spacing: 0.3px;
+      }
+
+      header {
+        padding: 20px 30px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+      }
+
+      .header-main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .hamburger-menu {
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 10px;
+        width: 44px;
+        height: 44px;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        background: rgba(0, 0, 0, 0.05);
+      }
+      .hamburger-menu:hover {
+        background: rgba(0, 0, 0, 0.15);
+        transform: scale(1.05);
+      }
+      .hamburger-menu span {
+        display: block;
+        width: 26px;
+        height: 3px;
+        background: linear-gradient(90deg, #000000, #333);
+        margin: 3px 0;
+        transition: 0.3s;
+        border-radius: 3px;
+      }
+
+      .logo {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.3rem;
+        font-weight: 800;
+        text-align: center;
+        flex: 1;
+        color: #000000;
+        letter-spacing: -0.5px;
+        text-shadow: 2px 2px 0px rgba(241, 196, 15, 0.1);
+      }
+
+      .cart {
+        position: relative;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+        color: #000000;
+        background: rgba(241, 196, 15, 0.05);
+      }
+      .cart:hover {
+        background: rgba(241, 196, 15, 0.15);
+        transform: translateY(-2px) scale(1.05);
+      }
+
+      .cart-count {
+        position: absolute;
+        top: -4px;
+        right: -4px;
+        background: linear-gradient(135deg, #f1c40f, #f39c12);
+        color: white;
+        font-size: 11px;
+        font-weight: bold;
+        padding: 4px 7px;
+        border-radius: 12px;
+        min-width: 22px;
+        text-align: center;
+        box-shadow: 0 3px 10px rgba(241, 196, 15, 0.4);
+        border: 2px solid white;
+      }
+
+      /* Dropdown Menu */
+      .dropdown-menu {
+        position: absolute;
+        top: 75px;
+        left: 15px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(15px);
+        border-radius: 16px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        width: 240px;
+        padding: 15px 0;
+        display: none;
+        flex-direction: column;
+        z-index: 1000;
+        border: 2px solid rgba(0, 0, 0, 0.2);
+      }
+
+      .dropdown-menu.active {
+        display: flex;
+        animation: dropdownFade 0.3s ease forwards;
+      }
+
+      .dropdown-menu > a {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 15px 22px;
+        font-size: 1rem;
+        text-decoration: none;
+        color: #000;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .dropdown-menu > a:hover {
+        background: linear-gradient(90deg, rgba(241, 196, 15, 0.15), rgba(241, 196, 15, 0.05));
+        color: #000;
+        padding-left: 28px;
+      }
+
+      .dropdown-item-with-submenu {
+        position: relative;
+      }
+
+      .policies-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 15px 22px;
+        font-size: 1rem;
+        color: #000;
+        transition: all 0.3s ease;
+        cursor: pointer;
+        background: none;
+        border: none;
+        width: 100%;
+        text-align: left;
+        font-family: 'Inter', sans-serif;
+        font-weight: 500;
+      }
+
+      .policies-toggle:hover {
+        background: linear-gradient(90deg, rgba(241, 196, 15, 0.15), rgba(241, 196, 15, 0.05));
+        color: #000;
+        padding-left: 28px;
+      }
+
+      .policies-toggle .left-content {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .policies-toggle .arrow-icon {
+        font-size: 0.8rem;
+        transition: transform 0.3s ease;
+      }
+
+      .policies-toggle.active .arrow-icon {
+        transform: rotate(180deg);
+      }
+
+      .submenu {
+        background-color: #fafafa;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s ease;
+        border-radius: 8px;
+        margin: 5px 10px;
+      }
+
+      .submenu.active {
+        max-height: 300px;
+      }
+
+      .submenu a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 13px 20px 13px 40px;
+        text-decoration: none;
+        color: #555;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        font-weight: 500;
+      }
+
+      .submenu a:hover {
+        background-color: #fff;
+        color: #f39c12;
+        padding-left: 50px;
+      }
+
+      @keyframes dropdownFade {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Main Container */
+      .main-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Image Gallery - Full Width */
+      .image-gallery {
+        width: 100%;
+        margin: 0 0 40px 0;
+        text-align: center;
+        padding: 0;
+      }
+
+      .main-img-container {
+        width: 100%;
+        height: 550px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        background: #000;
+      }
+
+      .main-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+
+      .main-img-container:hover .main-img {
+        transform: scale(1.05);
+      }
+
+      .thumb-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        gap: 15px;
+        flex-wrap: wrap;
+        padding: 0 20px;
+      }
+
+      .thumb {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 12px;
+        border: 3px solid rgba(241, 196, 15, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      }
+
+      .thumb:hover {
+        border-color: #f1c40f;
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(241, 196, 15, 0.3);
+      }
+
+      .thumb.active {
+        border-color: #f1c40f;
+        box-shadow: 0 6px 20px rgba(241, 196, 15, 0.3);
+      }
+
+      /* Lightbox Modal */
+      .lightbox-modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.95);
+        z-index: 10001;
+        justify-content: center;
+        align-items: center;
+        animation: fadeIn 0.3s ease;
+      }
+
+      .lightbox-modal.active {
+        display: flex;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+
+      .lightbox-content {
+        position: relative;
+        max-width: 95%;
+        max-height: 95vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .lightbox-img {
+        max-width: 100%;
+        max-height: 95vh;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+      }
+
+      .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        font-size: 40px;
+        color: #fff;
+        cursor: pointer;
+        z-index: 10002;
+        background: rgba(0, 0, 0, 0.5);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      }
+
+      .lightbox-close:hover {
+        background: rgba(241, 196, 15, 0.8);
+        transform: rotate(90deg);
+      }
+
+      /* Product Info Section */
+      .product-info-section {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .page-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        text-align: left;
+        color: #000000;
+        margin-bottom: 0;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+      }
+
+      .page-title.second-line {
+        padding-left: 0;
+      }
+
+      .subtitle {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #333;
+        text-align: left;
+        margin: 10px 0 5px 0;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .price {
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 10px;
+        margin-top: 0;
+        text-align: left;
+      }
+
+      .shipping-info {
+        font-size: 0.9rem;
+        color: #4ade80;
+        margin-bottom: 30px;
+        text-align: left;
+      }
+
+      .shipping-info a {
+        color: #4ade80;
+        text-decoration: underline;
+      }
+
+      .quantity-section {
+        margin-bottom: 30px;
+      }
+
+      .quantity-label {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #000;
+        margin-bottom: 15px;
+        text-align: left;
+      }
+
+      .quantity-control {
+        display: inline-flex;
+        align-items: center;
+        border: 2px solid #e5e5e5;
+        border-radius: 50px;
+        padding: 8px 20px;
+      }
+
+      .quantity-btn {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: #999;
+        cursor: pointer;
+        padding: 0 15px;
+        transition: color 0.2s;
+      }
+
+      .quantity-btn:hover {
+        color: #000;
+      }
+
+      .quantity-value {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #000;
+        min-width: 30px;
+        text-align: center;
+      }
+
+      .add-to-cart-btn {
+        width: 100%;
+        padding: 18px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #8b4513;
+        background-color: transparent;
+        border: 2px solid #4ade80;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: capitalize;
+      }
+
+      .add-to-cart-btn:hover {
+        background-color: #4ade80;
+        color: #fff;
+      }
+
+      /* Features Grid */
+      .features-container {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 30px 20px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .features-grid {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 15px;
+        flex-wrap: nowrap;
+        width: 100%;
+      }
+
+      .feature-item {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .feature-icon-circle {
+        transition: all 0.3s ease;
+        cursor: pointer;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .feature-icon-circle:hover {
+        transform: scale(1.1) translateY(-5px);
+      }
+
+      .feature-icon-circle img {
+        width: 100%;
+        max-width: 120px;
+        height: auto;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+      }
+
+      .feature-icon-circle:hover img {
+        transform: rotate(5deg);
+      }
+
+      .feature-text {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #000;
+        line-height: 1.4;
+        margin-top: 10px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: none;
+      }
+
+      /* Halal Section */
+      .halal-container {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .halal-section {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        padding: 20px;
+        border: 2px solid #000;
+        border-radius: 15px;
+      }
+
+      .halal-logo {
+        width: 120px;
+        height: 120px;
+        background: #2d5f2e;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        color: white;
+        font-weight: bold;
+        font-size: 1.2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .halal-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .halal-content {
+        display: flex;
+        align-items: center;
+        flex: 1;
+      }
+
+      .halal-content p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        color: #000;
+        margin: 0;
+      }
+
+      .halal-content strong {
+        font-weight: 700;
+      }
+
+      /* Animated Secure Payment Section */
+      .secure-payment-container {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .secure-payment-container:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .secure-payment-card {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        max-width: 600px;
+        width: 100%;
+      }
+
+      .shield-container {
+        position: relative;
+        width: 120px;
+        height: 120px;
+        flex-shrink: 0;
+        filter: drop-shadow(0 10px 25px rgba(34, 197, 94, 0.4));
+        transition: all 0.3s ease;
+      }
+
+      .shield-container:hover {
+        filter: drop-shadow(0 15px 35px rgba(34, 197, 94, 0.5));
+        transform: translateY(-3px);
+      }
+
+      .animated-shield {
+        width: 100%;
+        height: 100%;
+      }
+
+      .shield-bg {
+        fill: url(#shieldGradient);
+      }
+
+      .shield-highlight {
+        fill: url(#shieldHighlight);
+        opacity: 0.3;
+      }
+
+      .shield-shadow {
+        fill: rgba(0, 0, 0, 0.2);
+      }
+
+      .checkmark {
+        stroke: white;
+        stroke-width: 8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        fill: none;
+        stroke-dasharray: 100;
+        stroke-dashoffset: 100;
+        animation: drawCheck 2s ease-in-out infinite;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+      }
+
+      @keyframes drawCheck {
+        0% {
+          stroke-dashoffset: 100;
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        50% {
+          stroke-dashoffset: 0;
+        }
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      .secure-payment-text {
+        flex: 1;
+        text-align: left;
+      }
+
+      .secure-payment-text h3 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #000;
+        margin: 0 0 10px 0;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .secure-payment-text p {
+        font-size: 1.1rem;
+        color: #666;
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      /* Accordion Section */
+      .accordion-section {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .accordion-item {
+        border-bottom: 1px solid #e5e5e5;
+        padding: 20px 0;
+      }
+
+      .accordion-item:last-child {
+        border-bottom: none;
+      }
+
+      .accordion-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #000;
+      }
+
+      .accordion-header i {
+        transition: transform 0.3s ease;
+      }
+
+      .accordion-header.active i {
+        transform: rotate(180deg);
+      }
+
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        padding-top: 0;
+      }
+
+      .accordion-content.active {
+        max-height: 500px;
+        padding-top: 15px;
+      }
+
+      .accordion-content p {
+        color: #666;
+        line-height: 1.8;
+      }
+
+      /* Reviews Section */
+      .reviews-section {
+        background: #ffffff;
+        border-radius: 20px;
+        padding: 40px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      }
+
+      .reviews-section h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+      }
+
+      /* Cart notification */
+      .cart-notification {
+        position: fixed;
+        top: 100px;
+        right: 25px;
+        background: linear-gradient(135deg, #000000, #1a1a1a);
+        color: #f1c40f;
+        padding: 22px 35px;
+        border-radius: 16px;
+        z-index: 10000;
+        transform: translateX(400px);
+        transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+        font-weight: 700;
+        font-size: 1.08rem;
+        border: 3px solid #f1c40f;
+      }
+
+      .cart-notification.show {
+        transform: translateX(0);
+      }
+
+      .cart-notification i {
+        margin-right: 14px;
+        font-size: 1.4rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 992px) {
+        .features-grid {
+          gap: 12px;
+        }
+
+        .feature-icon-circle img {
+          max-width: 90px;
+        }
+
+        .feature-text {
+          font-size: 0.85rem;
+        }
+
+        .main-img-container {
+          height: 450px;
+        }
+
+        .logo {
+          font-size: 2rem;
+        }
+
+        .secure-payment-card {
+          flex-direction: column;
+          text-align: center;
+          padding: 30px;
+        }
+
+        .secure-payment-text {
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .features-grid {
+          gap: 10px;
+        }
+
+        .feature-icon-circle img {
+          max-width: 70px;
+        }
+
+        .feature-text {
+          font-size: 0.75rem;
+        }
+
+        .halal-section {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .halal-content {
+          justify-content: center;
+        }
+
+        .logo {
+          font-size: 1.8rem;
+        }
+
+        .main-img-container {
+          height: 400px;
+        }
+
+        .page-title {
+          font-size: 2rem;
+        }
+
+        .price {
+          font-size: 2rem;
+        }
+
+        .shield-container {
+          width: 100px;
+          height: 100px;
+        }
+
+        .secure-payment-text h3 {
+          font-size: 1.5rem;
+        }
+
+        .secure-payment-text p {
+          font-size: 1rem;
+        }
+
+        .secure-payment-card {
+          padding: 25px;
+          gap: 20px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .features-container {
+          padding: 20px 10px;
+        }
+
+        .features-grid {
+          gap: 8px;
+        }
+
+        .feature-icon-circle img {
+          max-width: 55px;
+        }
+
+        .feature-text {
+          font-size: 0.65rem;
+          line-height: 1.3;
+        }
+
+        .page-title {
+          font-size: 1.8rem;
+        }
+
+        .main-img-container {
+          height: 350px;
+        }
+
+        .product-info-section {
+          padding: 25px;
+        }
+
+        .logo {
+          font-size: 1.5rem;
+        }
+
+        .price {
+          font-size: 1.8rem;
+        }
+
+        .subtitle {
+          font-size: 0.95rem;
+          margin: 10px 0 5px 0;
+        }
+
+        .shield-container {
+          width: 80px;
+          height: 80px;
+        }
+
+        .secure-payment-text h3 {
+          font-size: 1.3rem;
+        }
+
+        .secure-payment-text p {
+          font-size: 0.9rem;
+        }
+
+        .secure-payment-card {
+          padding: 20px;
+          gap: 15px;
+        }
+
+        .secure-payment-container {
+          padding: 20px;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .features-grid {
+          gap: 6px;
+        }
+
+        .feature-icon-circle img {
+          max-width: 48px;
+        }
+
+        .feature-text {
+          font-size: 0.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+  <!-- Cart Notification -->
+  <div class="cart-notification" id="cartNotification">
+    <i class="fas fa-check-circle"></i>
+    <span>Item added to cart!</span>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <div class="lightbox-content">
+      <img id="lightboxImage" class="lightbox-img" src="" alt="Full view">
+    </div>
+  </div>
+
+  <!-- Running Banner -->
+  <div class="banner">
+    <marquee><strong>Welcome to Sony's Pickle - Made with love • No chemical preservatives added • Taste the South Indian tradition with Sony's Pickle before it's sold out!. Order Yours Now!!</strong></marquee>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-main">
+      <div class="hamburger-menu" onclick="toggleDropdown()">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="logo">Sony's Pickle</div>
+      <div class="cart" onclick="window.location.href='cart.html'">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cart-count">0</span>
+      </div>
+    </div>
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="index.html"><i class="fas fa-home"></i> Shop</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+      <a href="reviews.html"><i class="fas fa-star"></i> Reviews</a>
+      <div class="dropdown-item-with-submenu">
+        <button class="policies-toggle" onclick="togglePoliciesSubmenu(event)">
+          <span class="left-content">
+            <i class="fas fa-file-alt"></i> Policies
+          </span>
+          <i class="fas fa-chevron-down arrow-icon"></i>
+        </button>
+        <div class="submenu" id="policiesSubmenu">
+          <a href="privacy_policy.html"><i class="fas fa-user-shield"></i> Privacy Policy</a>
+          <a href="Shipping.html"><i class="fas fa-shipping-fast"></i> Shipping Policy</a>
+          <a href="terms_conditions.html"><i class="fas fa-file-contract"></i> Terms & Conditions</a>
+          <a href="Return_refund.html"><i class="fas fa-undo-alt"></i> Refund Policy</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Image Gallery - Full Width -->
+  <div class="image-gallery">
+    <div class="main-img-container" onclick="openLightbox()">
+      <img id="mainImage" class="main-img" src="images/slide.jpeg" alt="Main Image">
+    </div>
+    <div class="thumb-container">
+      <img class="thumb active" src="images/slide.jpeg" onclick="changeImage('images/slide.jpeg', this)">
+      <img class="thumb" src="images/S2.jpg" onclick="changeImage('images/S2.jpg', this)">
+      <img class="thumb" src="images/S3.jpg" onclick="changeImage('images/S3.jpg', this)">
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="main-container">
+
+    <!-- Product Info Section -->
+    <div class="product-info-section">
+      <h1 class="page-title">Sony's Standard Chicken Pickle </h1>
+      <h1 class="page-title second-line">(bonein)</h1>
+      <p class="subtitle">150g Chicken Pickle</p>
+      <div class="price">Rs.200.00</div>
+      <div class="shipping-info">
+        <a href="Shipping.html">Shipping</a> calculated at checkout
+      </div>
+      <div class="quantity-section">
+        <div class="quantity-label">Quantity</div>
+        <div class="quantity-control">
+          <button class="quantity-btn" onclick="decreaseQty()">−</button>
+          <span class="quantity-value" id="qty">0</span>
+          <button class="quantity-btn" onclick="increaseQty()">+</button>
+        </div>
+      </div>
+      <button class="add-to-cart-btn" onclick="addToCart()">Add to cart</button>
+    </div>
+
+    <!-- Features Container -->
+    <div class="features-container">
+      <div class="features-grid">
+        <div class="feature-item">
+          <div class="feature-icon-circle">
+            <img src="images/fl3.jpg" alt="Fresh Spices">
+          </div>
+          <div class="feature-text">Fresh ground spices</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-circle">
+            <img src="images/fl1.jpg" alt="Fresh">
+          </div>
+          <div class="feature-text">No need of refrigeration</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-circle">
+            <img src="images/fl5.jpg" alt="Oil">
+          </div>
+          <div class="feature-text">Pure and healthy gingelly oil</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-circle">
+            <img src="images/fl2.jpg" alt="No Preservatives">
+          </div>
+          <div class="feature-text">No preservatives added</div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon-circle">
+            <img src="images/fl4.jpg" alt="Traditional">
+          </div>
+          <div class="feature-text">Stays fresh for 6 months</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Halal Container -->
+    <div class="halal-container">
+      <div class="halal-section">
+        <div class="halal-logo">
+          <img src="halal.png" alt="Halal Certified">
+        </div>
+        <div class="halal-content">
+          <p><strong>100% Halal & Hygienically Prepared</strong><br>
+          Every batch of meat we use is certified halal and handled with the highest hygiene standards</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Animated Secure Payment Section -->
+    <div class="secure-payment-container">
+      <div class="secure-payment-card">
+        <div class="shield-container">
+          <svg class="animated-shield" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="shieldGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:#4ade80;stop-opacity:1" />
+                <stop offset="50%" style="stop-color:#22c55e;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#16a34a;stop-opacity:1" />
+              </linearGradient>
+              <linearGradient id="shieldHighlight" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0" />
+                <stop offset="50%" style="stop-color:#ffffff;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+              </linearGradient>
+              <filter id="innerShadow">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+                <feOffset dx="0" dy="2" result="offsetblur"/>
+                <feComponentTransfer>
+                  <feFuncA type="linear" slope="0.3"/>
+                </feComponentTransfer>
+                <feMerge>
+                  <feMergeNode/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+            <!-- Shadow layer -->
+            <path class="shield-shadow" d="M50 8 L88 22 L88 45 Q88 73 50 91 Q12 73 12 45 L12 22 Z"/>
+            <!-- Main shield -->
+            <path class="shield-bg" d="M50 5 L90 20 L90 45 Q90 75 50 95 Q10 75 10 45 L10 20 Z" filter="url(#innerShadow)"/>
+            <!-- Highlight for 3D effect -->
+            <path class="shield-highlight" d="M50 5 L90 20 L90 30 Q85 25 50 15 Q15 25 10 30 L10 20 Z"/>
+            <!-- Checkmark -->
+            <polyline class="checkmark" points="30,50 45,65 70,35"/>
+          </svg>
+          </svg>
+        </div>
+        <div class="secure-payment-text">
+          <h3>Secured Payments</h3>
+          <p>PhonePe secure payment gateway</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Accordion Section -->
+    <div class="accordion-section">
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span><i class="fas fa-clipboard-list"></i> Ingredients</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="accordion-content">
+          <p>Tender Chicken Chunks, Fresh Ginger, Aromatic Garlic, Premium South Indian Spices, Pure Gingelly Oil, Red Chili Powder, Turmeric and Salt.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+          <span><i class="fas fa-clock"></i> Shelf Life</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="accordion-content">
+          <p>Our pickles stay fresh for 6 months without refrigeration when stored properly. Use a clean, dry spoon and keep the lid tightly closed after every use to maintain freshness.</p>
+        </div>
+      </div>
+
+      <div class="accordion-item">
+        <div class="accordion-header active" onclick="toggleAccordion(this)">
+          <span><i class="fas fa-shipping-fast"></i> Shipping Policy</span>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="accordion-content active">
+          <p>We deliver within 5-7 business days across India. For more details, please visit our <a href="Shipping.html" style="color: #f39c12; text-decoration: underline;">Shipping Policy</a> page.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="reviews-section">
+      <h2>Customer reviews</h2>
+      <p style="color: #666; font-size: 1.1rem;">Share your thoughts and experiences with Sony's Pickle!</p>
+    </div>
+
+  </div>
+
+  <script>
+    // Image Gallery
+    function changeImage(imgPath, thumbElement) {
+      document.getElementById("mainImage").src = imgPath;
+      
+      // Update active thumb
+      document.querySelectorAll('.thumb').forEach(thumb => {
+        thumb.classList.remove('active');
+      });
+      thumbElement.classList.add('active');
+    }
+
+    // Lightbox functionality
+    function openLightbox() {
+      const mainImg = document.getElementById('mainImage');
+      const lightboxImg = document.getElementById('lightboxImage');
+      const lightboxModal = document.getElementById('lightboxModal');
+      
+      lightboxImg.src = mainImg.src;
+      lightboxModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      const lightboxModal = document.getElementById('lightboxModal');
+      lightboxModal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Close lightbox with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+
+    // Cart Management
+    let cartItems = [];
+
+    function updateCartCount() {
+      const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+      document.getElementById('cart-count').textContent = cartCount;
+    }
+
+    function addToCart() {
+      const qty = parseInt(document.getElementById('qty').textContent);
+      
+      if (qty === 0) {
+        alert('Please select a quantity greater than 0');
+        return;
+      }
+      
+      const product = "Sony's standard Chicken pickle(bonein)";
+      const price = 200;
+      
+      const existingItemIndex = cartItems.findIndex(item => item.product === product);
+      
+      if (existingItemIndex > -1) {
+        cartItems[existingItemIndex].quantity += qty;
+      } else {
+        cartItems.push({ product, price, quantity: qty });
+      }
+      
+      updateCartCount();
+      showCartNotification();
+      
+      const btn = document.querySelector('.add-to-cart-btn');
+      const originalText = btn.textContent;
+      btn.textContent = 'Added!';
+      btn.style.background = '#4ade80';
+      btn.style.color = '#fff';
+      
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = 'transparent';
+        btn.style.color = '#8b4513';
+      }, 1500);
+    }
+
+    function showCartNotification() {
+      const notification = document.getElementById('cartNotification');
+      notification.classList.add('show');
+      
+      setTimeout(() => {
+        notification.classList.remove('show');
+      }, 3000);
+    }
+
+    // Quantity Controls
+    function increaseQty() {
+      const qtyElement = document.getElementById('qty');
+      let currentQty = parseInt(qtyElement.textContent);
+      qtyElement.textContent = currentQty + 1;
+    }
+
+    function decreaseQty() {
+      const qtyElement = document.getElementById('qty');
+      let currentQty = parseInt(qtyElement.textContent);
+      if (currentQty > 0) {
+        qtyElement.textContent = currentQty - 1;
+      }
+    }
+
+    // Dropdown Menu
+    function toggleDropdown() {
+      const menu = document.getElementById('dropdownMenu');
+      const hamburger = document.querySelector('.hamburger-menu');
+      
+      menu.classList.toggle('active');
+      hamburger.classList.toggle('active');
+      
+      const spans = hamburger.querySelectorAll('span');
+      if (hamburger.classList.contains('active')) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+      } else {
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+      }
+    }
+
+    function togglePoliciesSubmenu(event) {
+      event.stopPropagation();
+      const submenu = document.getElementById('policiesSubmenu');
+      const toggle = event.currentTarget;
+      
+      submenu.classList.toggle('active');
+      toggle.classList.toggle('active');
+    }
+
+    // Accordion
+    function toggleAccordion(header) {
+      const content = header.nextElementSibling;
+      const isActive = header.classList.contains('active');
+      
+      // Close all accordions
+      document.querySelectorAll('.accordion-header').forEach(h => {
+        h.classList.remove('active');
+        h.nextElementSibling.classList.remove('active');
+      });
+      
+      // Open clicked accordion if it wasn't active
+      if (!isActive) {
+        header.classList.add('active');
+        content.classList.add('active');
+      }
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const dropdownMenu = document.getElementById('dropdownMenu');
+      const hamburgerMenu = document.querySelector('.hamburger-menu');
+      
+      if (!hamburgerMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
+        dropdownMenu.classList.remove('active');
+        hamburgerMenu.classList.remove('active');
+        
+        const submenu = document.getElementById('policiesSubmenu');
+        const toggle = document.querySelector('.policies-toggle');
+        if (submenu) submenu.classList.remove('active');
+        if (toggle) toggle.classList.remove('active');
+        
+        const spans = hamburgerMenu.querySelectorAll('span');
+        spans[0].style.transform = 'none';
+        spans[1].style.opacity = '1';
+        spans[2].style.transform = 'none';
+      }
+    });
+
+    // Initialize cart count on page load
+    updateCartCount();
+  </script>
+  </body>
+  </html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Return & Refund Policy - Sony's Pickle</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+      line-height: 1.8;
+    }
+
+    /* Banner */
+    .banner {
+      width: 100%;
+      overflow: hidden;
+      background-color: #f0c14b;
+      padding: 12px 0;
+    }
+    .banner marquee {
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #000000;
+    }
+
+    /* Header */
+    header {
+      padding: 20px 30px;
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hamburger-menu {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 8px;
+      width: 40px;
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hamburger-menu span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: #000000;
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    .hamburger-menu.active span:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .hamburger-menu.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger-menu.active span:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      text-align: center;
+      flex: 1;
+      color: #000000;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cart-container {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .cart-icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .cart-counter {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background-color: #f0c14b;
+      color: #000000;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .cart-counter.hidden {
+      display: none;
+    }
+
+    /* Dropdown Menu */
+    .dropdown-menu {
+      position: absolute;
+      top: 70px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.97);
+      backdrop-filter: blur(12px);
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+      width: 220px;
+      padding: 12px 0;
+      display: none;
+      flex-direction: column;
+      z-index: 1000;
+      border: 1px solid rgba(240, 193, 75, 0.3);
+    }
+
+    .dropdown-menu.active {
+      display: flex;
+      animation: dropdownFade 0.3s ease forwards;
+    }
+
+    .dropdown-menu a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      font-size: 1rem;
+      text-decoration: none;
+      color: #000000;
+      transition: all 0.3s ease;
+      font-weight: 600;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(240, 193, 75, 0.2);
+      padding-left: 25px;
+    }
+
+    @keyframes dropdownFade {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    /* Page Title */
+    .page-title {
+      font-size: 2.8rem;
+      font-weight: 900;
+      text-align: center;
+      color: #000000;
+      margin-bottom: 50px;
+      position: relative;
+      padding-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .page-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 5px;
+      background: #f0c14b;
+      border-radius: 3px;
+    }
+
+    /* Content Box */
+    .content-box {
+      background: #ffffff;
+      border: 3px solid #000000;
+      border-radius: 0;
+      padding: 50px 40px;
+      margin-bottom: 40px;
+      box-shadow: 8px 8px 0 #f0c14b;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #000000;
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #f0c14b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .section-content {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: #000000;
+      font-weight: 500;
+    }
+
+    .section-content strong {
+      font-weight: 800;
+      background: #f0c14b;
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    .bullet-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 20px 0;
+    }
+
+    .bullet-list li {
+      padding: 12px 0 12px 35px;
+      position: relative;
+      font-weight: 500;
+      font-size: 1.05rem;
+    }
+
+    .bullet-list li::before {
+      content: '●';
+      position: absolute;
+      left: 10px;
+      color: #f0c14b;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    /* Highlight Box */
+    .highlight-box {
+      background: #f0c14b;
+      border: 3px solid #000000;
+      padding: 30px;
+      margin: 30px 0;
+      border-radius: 0;
+      box-shadow: 5px 5px 0 #000000;
+    }
+
+    .highlight-box p {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #000000;
+      margin: 0;
+      line-height: 1.8;
+    }
+
+    /* Important Note */
+    .important-note {
+      background: #000000;
+      color: #f0c14b;
+      padding: 25px 30px;
+      margin: 30px 0;
+      border-left: 6px solid #f0c14b;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #000000;
+      color: #f0c14b;
+      margin-top: 60px;
+      font-weight: 600;
+    }
+
+    footer a {
+      color: #f0c14b;
+      text-decoration: none;
+      font-weight: 700;
+      transition: all 0.3s ease;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2rem;
+      }
+
+      .content-box {
+        padding: 30px 20px;
+        box-shadow: 5px 5px 0 #f0c14b;
+      }
+
+      .section-title {
+        font-size: 1.4rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+      }
+
+      .highlight-box {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Banner -->
+  <div class="banner">
+    <marquee><strong>Welcome to Sony's Pickle - Made with love • No chemical preservatives added • Order Yours Now!</strong></marquee>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-main">
+      <div class="hamburger-menu" id="hamburgerMenu">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="logo">Sony's Pickle</div>
+      <div class="cart-container">
+        <a href="cart.html">
+          <img src="cart-icon.jpeg" alt="Cart" class="cart-icon">
+        </a>
+        <div class="cart-counter hidden" id="cartCounter">0</div>
+      </div>
+    </div>
+    <div class="dropdown-menu" id="dropdownMenu">
+      <a href="index.html"><i class="fas fa-home"></i> Shop</a>
+      <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+      <a href="reviews.html"><i class="fas fa-star"></i> Reviews</a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="container">
+    <h1 class="page-title">Return & Refund Policy</h1>
+
+    <!-- Return Policy Section -->
+    <div class="content-box">
+      <h2 class="section-title">1. Return Policy</h2>
+      <div class="section-content">
+        <p><strong>We do not accept returns of any food items once they have been shipped from our premises.</strong></p>
+        <p>This policy is in place to maintain the highest standards of hygiene, safety, and quality. Once the product leaves our facility, it cannot be resold or reused due to food safety regulations.</p>
+      </div>
+    </div>
+
+    <!-- Refund Policy Section -->
+    <div class="content-box">
+      <h2 class="section-title">2. Refund Policy</h2>
+      <div class="section-content">
+        <p>As we sell perishable goods, refunds are not applicable except in rare cases where:</p>
+        <ul class="bullet-list">
+          <li>The product is damaged, spoiled, or leaked during transit.</li>
+          <li>You notify us within <strong>24 hours</strong> of receiving the order, along with clear photographs of the damaged product and packaging.</li>
+        </ul>
+      </div>
+
+      <div class="highlight-box">
+        <p>After review, if your claim is approved, we will initiate a replacement or a full refund to your original payment method within <strong>5–7 business days</strong>.</p>
+      </div>
+
+      <div class="important-note">
+        <i class="fas fa-exclamation-triangle"></i> Refunds will not be issued for reasons such as change of taste, personal dislike, or incorrect address provided by the customer.
+      </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div class="content-box">
+      <h2 class="section-title">Need Help?</h2>
+      <div class="section-content">
+        <p>If you have any questions regarding our Return & Refund Policy, please contact us:</p>
+        <p><strong>📧 Email:</strong> sonyspickle@gmail.com</p>
+        <p><strong>🏠 Address:</strong> Sony's Pickle, Kanyakumari, Tamil Nadu, India</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p><a href="privacy_policy.html">Privacy Policy</a> • <a href="shipping_policy.html">Shipping Policy</a> • <a href="terms_conditions.html">Terms & Conditions</a></p>
+    <p style="margin-top: 15px;">© 2025 Sony's Pickle. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Hamburger menu toggle
+    document.getElementById('hamburgerMenu').addEventListener('click', function() {
+      const dropdown = document.getElementById('dropdownMenu');
+      const hamburger = this;
+      
+      dropdown.classList.toggle('active');
+      hamburger.classList.toggle('active');
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+      const hamburger = document.getElementById('hamburgerMenu');
+      const dropdown = document.getElementById('dropdownMenu');
+      
+      if (!hamburger.contains(event.target) && !dropdown.contains(event.target)) {
+        dropdown.classList.remove('active');
+        hamburger.classList.remove('active');
+      }
+    });
+
+    // Update cart counter
+    function updateCartCounter() {
+      const counter = document.getElementById('cartCounter');
+      // Add your cart logic here
+    }
+    updateCartCounter();
+  </script>
+
+</body>
+</html>

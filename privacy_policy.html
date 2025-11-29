@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Sony's Pickle</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '🔒';
+            position: absolute;
+            font-size: 120px;
+            opacity: 0.1;
+            top: -20px;
+            right: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.15em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .intro {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            padding: 25px;
+            border-left: 4px solid #ff6b6b;
+            margin-bottom: 30px;
+            border-radius: 6px;
+        }
+
+        .intro p {
+            margin-bottom: 12px;
+            font-size: 1.05em;
+            color: #555;
+        }
+
+        .intro p:first-child {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 38px;
+            font-weight: bold;
+            margin-right: 12px;
+            font-size: 1.1em;
+            box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+        }
+
+        .section h2 {
+            display: inline-block;
+            color: #2c3e50;
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            vertical-align: middle;
+        }
+
+        .section p {
+            margin-bottom: 12px;
+            color: #555;
+            font-size: 1.05em;
+        }
+
+        .section ul {
+            margin: 15px 0 15px 30px;
+            color: #555;
+        }
+
+        .section li {
+            margin-bottom: 10px;
+            font-size: 1.05em;
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .section li::before {
+            content: '✓';
+            color: #ff6b6b;
+            font-weight: bold;
+            position: absolute;
+            left: -20px;
+        }
+
+        .subsection {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .subsection h3 {
+            color: #ff6b6b;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .highlight-box {
+            background: #fff9e6;
+            border-left: 4px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .highlight-box p {
+            color: #856404;
+            font-weight: 500;
+        }
+
+        .contact-box {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 30px;
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .contact-box h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .contact-item {
+            margin-bottom: 12px;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-item strong {
+            margin-right: 8px;
+            min-width: 80px;
+        }
+
+        .contact-item a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+            transition: border-color 0.3s;
+        }
+
+        .contact-item a:hover {
+            border-bottom-color: white;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.95em;
+        }
+
+        .icon {
+            display: inline-block;
+            margin-right: 8px;
+            font-size: 1.2em;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .header::before {
+                font-size: 80px;
+                right: 10px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .section h2 {
+                font-size: 1.3em;
+                display: block;
+                margin-top: 10px;
+            }
+
+            .section-number {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .contact-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .contact-item strong {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Sony's Pickle</h1>
+            <p>Privacy Policy</p>
+        </div>
+
+        <div class="content">
+            <div class="intro">
+                <p>At Sony's Pickle, your privacy is important to us.</p>
+                <p>This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website (www.sonyspickle.com) or make a purchase from us.</p>
+                <p>By using our website or providing your information, you agree to the practices described in this Privacy Policy.</p>
+            </div>
+
+            <div class="section">
+                <span class="section-number">1</span>
+                <h2>Information We Collect</h2>
+                <p>We collect the following types of information to provide and improve our services:</p>
+                
+                <div class="subsection">
+                    <h3>a. Personal Information:</h3>
+                    <p>When you place an order or contact us, we may collect:</p>
+                    <ul>
+                        <li>Full name</li>
+                        <li>Shipping and billing address</li>
+                        <li>Email address</li>
+                        <li>Phone number</li>
+                        <li>Payment details (processed securely through third-party gateways)</li>
+                    </ul>
+                </div>
+
+                <div class="subsection">
+                    <h3>b. Non-Personal Information:</h3>
+                    <p>We may also collect non-identifiable information such as:</p>
+                    <ul>
+                        <li>Browser type, device, and operating system</li>
+                        <li>Pages visited and time spent on the website</li>
+                        <li>IP address (for fraud prevention and analytics)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <span class="section-number">2</span>
+                <h2>How We Use Your Information</h2>
+                <p>We use your information to:</p>
+                <ul>
+                    <li>Process and fulfill your orders</li>
+                    <li>Communicate about your purchase and delivery updates</li>
+                    <li>Respond to customer service requests or feedback</li>
+                    <li>Improve our website, services, and customer experience</li>
+                    <li>Send occasional promotional emails (only if you opt-in)</li>
+                </ul>
+                <div class="highlight-box">
+                    <p><span class="icon">🔒</span> We do not sell, rent, or trade your personal information to third parties.</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <span class="section-number">3</span>
+                <h2>Payment Security</h2>
+                <p>All online payments are handled through secure, PCI-compliant payment gateways.</p>
+                <p>Sony's Pickle does not store or access your full payment details, such as credit/debit card numbers or UPI credentials.</p>
+            </div>
+
+            <div class="section">
+                <span class="section-number">4</span>
+                <h2>Cookies</h2>
+                <p>Our website uses cookies to enhance user experience and track preferences.</p>
+                <p>Cookies help us understand user behavior, improve navigation, and optimize performance.</p>
+                <p>You can choose to disable cookies in your browser settings, though some features may not function properly as a result.</p>
+            </div>
+
+            <div class="section">
+                <span class="section-number">5</span>
+                <h2>Third-Party Services</h2>
+                <p>We may use third-party services (like courier partners, analytics tools, or payment processors) to fulfill orders or analyze site performance.</p>
+                <p>These providers collect, use, and disclose your information only to the extent necessary for them to perform the services on our behalf.</p>
+                <p>However, once you leave our website or are redirected to a third-party site, their privacy policy will apply.</p>
+            </div>
+
+            <div class="section">
+                <span class="section-number">6</span>
+                <h2>Data Protection</h2>
+                <p>We take appropriate technical and organizational measures to protect your personal data against unauthorized access, misuse, loss, or disclosure.</p>
+                <p>While we strive to ensure your data is secure, no method of transmission over the internet is 100% secure.</p>
+            </div>
+
+            <div class="section">
+                <span class="section-number">7</span>
+                <h2>Your Rights</h2>
+                <p>You have the right to:</p>
+                <ul>
+                    <li>Access and review the information we hold about you</li>
+                    <li>Request corrections or deletion of your personal data (subject to legal or transactional obligations)</li>
+                    <li>Withdraw consent for marketing communications at any time</li>
+                </ul>
+                <p>To exercise these rights, please contact us at <a href="mailto:sonyspickle@gmail.com" style="color: #ff6b6b; text-decoration: none; font-weight: 600;">sonyspickle@gmail.com</a>.</p>
+            </div>
+
+            <div class="section">
+                <span class="section-number">8</span>
+                <h2>Retention of Data</h2>
+                <p>We retain your personal data only as long as necessary to fulfill your orders, comply with legal obligations, or resolve disputes.</p>
+            </div>
+
+            <div class="section">
+                <span class="section-number">9</span>
+                <h2>Updates to This Policy</h2>
+                <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated revision date.</p>
+                <p>Continued use of our website after any updates means you accept the revised policy.</p>
+            </div>
+
+            <div class="contact-box">
+                <h2><span class="icon">📞</span> Contact Us</h2>
+                <p>If you have any questions, concerns, or complaints about this Privacy Policy or how your data is handled, please contact us at:</p>
+                <div class="divider"></div>
+                <div class="contact-item">
+                    <strong>Phone:</strong> <a href="tel:+918220072473">+91 82200 72473</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Email:</strong> <a href="mailto:sonyspickle@gmail.com">sonyspickle@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <strong>Address:</strong> Sony's Pickle, Kanyakumari, Tamil Nadu, India
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 Sony's Pickle. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

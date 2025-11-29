@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Customer Reviews - Sony's Pickle</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #fff9c4, #fffacd, #ffffff);
+      min-height: 100vh;
+    }
+
+    .banner {
+      background: linear-gradient(45deg, #ffd700, #ffed4e);
+      color: #333;
+      padding: 8px 0;
+      font-weight: bold;
+    }
+
+    .banner marquee {
+      font-size: 14px;
+    }
+
+    header {
+      background: #ffffff;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 10px rgba(255, 215, 0, 0.2);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 3px solid #ffd700;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      color: #333;
+      background: linear-gradient(45deg, #ffd700, #ffed4e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .menu a:hover {
+      color: #ff6b35;
+    }
+
+    .cart-icon {
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .reviews-page-content h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #2c3e50;
+      font-size: 2.5rem;
+    }
+
+    .reviews-summary {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      margin-bottom: 3rem;
+    }
+
+    .rating-overview {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .average-rating {
+      text-align: center;
+    }
+
+    .rating-number {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #ffd700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .stars-large {
+      margin: 0.5rem 0;
+    }
+
+    .stars-large i {
+      color: #ffd700;
+      font-size: 1.5rem;
+      margin: 0 2px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .rating-breakdown {
+      flex: 1;
+    }
+
+    .rating-bar {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .rating-bar span:first-child {
+      min-width: 60px;
+      font-size: 0.9rem;
+    }
+
+    .bar {
+      flex: 1;
+      height: 10px;
+      background: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      background: linear-gradient(45deg, #ffd700, #ffed4e);
+      border-radius: 5px;
+    }
+
+    .rating-bar span:last-child {
+      min-width: 40px;
+      font-size: 0.9rem;
+      text-align: right;
+    }
+
+    .all-reviews h2 {
+      margin-bottom: 2rem;
+      color: #333;
+      font-size: 2rem;
+      text-shadow: 1px 1px 2px rgba(255, 215, 0, 0.3);
+    }
+
+    .reviews-grid-page {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .review-card-detailed {
+      background: linear-gradient(135deg, #ffffff, #fffef7);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+      border-left: 5px solid #ffd700;
+      border-top: 1px solid #ffd700;
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .reviewer-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #ffd700, #ffed4e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+      font-weight: bold;
+      font-size: 1.2rem;
+      border: 2px solid #ffffff;
+      box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+    }
+
+    .review-date {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .stars i {
+      color: #ffd700;
+      font-size: 1.2rem;
+      margin: 0 1px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    .review-card-detailed h4 {
+      color: #e6b800;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .review-card-detailed p {
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .review-helpful {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid #ffd700;
+    }
+
+    .review-helpful span {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .helpful-btn {
+      background: linear-gradient(135deg, #ffffff, #fffacd);
+      border: 1px solid #ffd700;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+      color: #333;
+    }
+
+    .helpful-btn:hover {
+      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      color: #333;
+      border-color: #e6b800;
+      transform: translateY(-1px);
+    }
+
+    .quality-section {
+      background: linear-gradient(135deg, #ffffff, #fffef7);
+      padding: 3rem 2rem;
+      border-radius: 15px;
+      margin: 3rem 0;
+      box-shadow: 0 5px 20px rgba(255, 215, 0, 0.2);
+      border: 2px solid #ffd700;
+    }
+
+    .quality-section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #333;
+      font-size: 2rem;
+      text-shadow: 1px 1px 2px rgba(255, 215, 0, 0.3);
+    }
+
+    .quality-logos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .quality-logo {
+      text-align: center;
+    }
+
+    .logo-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, #ffd700, #ffed4e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .logo-circle i {
+      font-size: 2rem;
+      color: #333;
+    }
+
+    .quality-logo h3 {
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-size: 1rem;
+    }
+
+    .quality-logo p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    .back-button {
+      display: inline-block;
+      background: linear-gradient(45deg, #ffd700, #ffed4e);
+      color: #333;
+      padding: 1rem 2rem;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      margin-top: 2rem;
+      transition: all 0.3s;
+      border: 2px solid #ffffff;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+      background: linear-gradient(45deg, #ffed4e, #fff700);
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, #ffd700, #ffed4e);
+      color: #333;
+      margin-top: 3rem;
+      border-top: 3px solid #ffffff;
+    }
+
+    footer a {
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 1rem;
+      }
+      
+      .rating-overview {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      
+      .menu {
+        gap: 1rem;
+      }
+      
+      .logo {
+        font-size: 1.5rem;
+      }
+      
+      .reviews-page-content h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Running banner -->
+<div class="banner">
+  <marquee>Welcome to Sony's Pickle – Freshly made with love! Free shipping on orders over ₹500!</marquee>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="logo">Sony's Pickle</div>
+  <nav class="menu">
+    <a href="index.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <img src="cart-icon.jpeg" alt="Cart" class="cart-icon">
+  </nav>
+</header>
+
+<!-- Main Content -->
+<main class="container">
+  <div class="reviews-page-content">
+    <h1>Customer Reviews & Testimonials</h1>
+    
+    <div class="reviews-summary">
+      <div class="rating-overview">
+        <div class="average-rating">
+          <span class="rating-number">4.9</span>
+          <div class="stars-large">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <p>Based on 247 reviews</p>
+        </div>
+        
+        <div class="rating-breakdown">
+          <div class="rating-bar">
+            <span>5 stars</span>
+            <div class="bar"><div class="fill" style="width: 92%"></div></div>
+            <span>92%</span>
+          </div>
+          <div class="rating-bar">
+            <span>4 stars</span>
+            <div class="bar"><div class="fill" style="width: 6%"></div></div>
+            <span>6%</span>
+          </div>
+          <div class="rating-bar">
+            <span>3 stars</span>
+            <div class="bar"><div class="fill" style="width: 2%"></div></div>
+            <span>2%</span>
+          </div>
+          <div class="rating-bar">
+            <span>2 stars</span>
+            <div class="bar"><div class="fill" style="width: 0%"></div></div>
+            <span>0%</span>
+          </div>
+          <div class="rating-bar">
+            <span>1 star</span>
+            <div class="bar"><div class="fill" style="width: 0%"></div></div>
+            <span>0%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- All Reviews -->
+    <div class="all-reviews">
+      <h2>All Customer Reviews</h2>
+      
+      <div class="reviews-grid-page">
+        <div class="review-card-detailed">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">P</div>
+              <div>
+                <strong>Priya Rajesh</strong>
+                <div class="review-date">March 15, 2024</div>
+              </div>
+            </div>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <h4>Chicken Pickle (Premium Boneless)</h4>
+          <p>"Absolutely amazing! The chicken pickle tastes exactly like my grandmother used to make. The spices are perfectly balanced, and the chicken is incredibly tender. I've shared this with my friends and they all want to order now. Sony's quality is exceptional!"</p>
+          <div class="review-helpful">
+            <span>📍 Kochi, Kerala</span>
+            <button class="helpful-btn">👍 Helpful (12)</button>
+          </div>
+        </div>
+
+        <div class="review-card-detailed">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">A</div>
+              <div>
+                <strong>Anil Menon</strong>
+                <div class="review-date">March 12, 2024</div>
+              </div>
+            </div>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <h4>Prawn Pickle</h4>
+          <p>"The prawn pickle is outstanding! Fresh, flavorful, and authentic. You can taste the quality in every bite. The packaging was excellent, and delivery was surprisingly quick from Kerala to Thiruvananthapuram. Highly recommended for seafood lovers!"</p>
+          <div class="review-helpful">
+            <span>📍 Thiruvananthapuram, Kerala</span>
+            <button class="helpful-btn">👍 Helpful (8)</button>
+          </div>
+        </div>
+
+        <div class="review-card-detailed">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">D</div>
+              <div>
+                <strong>Deepa Krishnan</strong>
+                <div class="review-date">March 10, 2024</div>
+              </div>
+            </div>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <h4>Kanyakumari Banana Chips</h4>
+          <p>"These banana chips are absolutely addictive! Perfectly crispy, fresh, and with just the right amount of salt. My kids can't stop munching on them. Much better than store-bought chips. Sony's quality is truly unmatched!"</p>
+          <div class="review-helpful">
+            <span>📍 Kozhikode, Kerala</span>
+            <button class="helpful-btn">👍 Helpful (15)</button>
+          </div>
+        </div>
+
+        <div class="review-card-detailed">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">R</div>
+              <div>
+                <strong>Ravi Kumar</strong>
+                <div class="review-date">March 8, 2024</div>
+              </div>
+            </div>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <h4>Fish Pickle</h4>
+          <p>"Ordered the fish pickle for my father who's from Kerala. He was so happy and said it reminded him of his childhood. The taste is authentic and the fish is fresh. Great job Sony! Will order more varieties soon."</p>
+          <div class="review-helpful">
+            <span>📍 Bangalore, Karnataka</span>
+            <button class="helpful-btn">👍 Helpful (6)</button>
+          </div>
+        </div>
+
+        <div class="review-card-detailed">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">M</div>
+              <div>
+                <strong>Maya Nair</strong>
+                <div class="review-date">March 5, 2024</div>
+              </div>
+            </div>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <h4>Coconut Gunpowder</h4>
+          <p>"The coconut gunpowder is incredibly flavorful! Perfect with dosa and rice. Love that it's made with natural ingredients and no preservatives. Sony's products are a blessing for those of us living away from Kerala!"</p>
+          <div class="review-helpful">
+            <span>📍 Mumbai, Maharashtra</span>
+            <button class="helpful-btn">👍 Helpful (9)</button>
+          </div>
+        </div>
+
+        <div class="review-card-detailed">
+          <div class="review-header">
+            <div class="reviewer-info">
+              <div class="reviewer-avatar">S</div>
+              <div>
+                <strong>Suresh Pillai</strong>
+                <div class="review-date">March 2, 2024</div>
+              </div>
+            </div>
+            <div class="stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="far fa-star"></i>
+            </div>
+          </div>
+          <h4>Chicken Pickle (Standard)</h4>
+          <p>"Very good taste and quality. The chicken is tender and well-marinated. Only suggestion would be to make it a bit more spicy for those who love extra heat. But overall, excellent product. Will definitely order again!"</p>
+          <div class="review-helpful">
+            <span>📍 Chennai, Tamil Nadu</span>
+            <button class="helpful-btn">👍 Helpful (4)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quality Assurance Section with Enhanced Logos -->
+    <div class="quality-section">
+      <h2>Why Choose Sony's Pickle?</h2>
+      <div class="quality-logos">
+        <div class="quality-logo">
+          <div class="logo-circle">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <h3>100% ROLLED WHOLE LEAVES</h3>
+          <p>Fresh whole spices and leaves used in every batch</p>
+        </div>
+        
+        <div class="quality-logo">
+          <div class="logo-circle">
+            <i class="fas fa-ban"></i>
+          </div>
+          <h3>NO ARTIFICIAL INGREDIENTS</h3>
+          <p>Pure natural ingredients with traditional recipes</p>
+        </div>
+        
+        <div class="quality-logo">
+          <div class="logo-circle">
+            <i class="fas fa-hand-holding-heart"></i>
+          </div>
+          <h3>HAND PACKED IN MANCHESTER</h3>
+          <p>Carefully hand-packed with love in Kerala</p>
+        </div>
+        
+        <div class="quality-logo">
+          <div class="logo-circle">
+            <i class="fas fa-globe"></i>
+          </div>
+          <h3>GOOD BUSINESS ALL ROUND</h3>
+          <p>Supporting local communities and sustainable practices</p>
+        </div>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-button">← Back to Shop</a>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="container">
+  <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
+</footer>
+
+<script>
+// Add functionality to helpful buttons
+document.querySelectorAll('.helpful-btn').forEach(button => {
+  button.addEventListener('click', function() {
+    this.style.color = '#e74c3c';
+    this.innerHTML = '👍 Helpful ✓';
+  });
+});
+</script>
+
+</body>
+</html>

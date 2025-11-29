@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact - Sony's Pickle</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+    
+    /* Base styles */
+    * {
+      box-sizing: border-box;
+    }
+    
+    .banner marquee .highlight {
+      background-color: #ff6b35;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Header styling - Mobile First Responsive */
+    header {
+      width: 100%;
+      padding: 15px 10px;
+      position: relative;
+    }
+    
+    .header-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 5px;
+    }
+    
+    .hamburger-menu {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      z-index: 1000;
+      padding: 5px;
+      width: 40px;
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .hamburger-menu span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: black;
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+    
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: black;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-align: center;
+      flex: 1;
+      margin: 0 10px;
+    }
+    
+    .cart-icon {
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      z-index: 999;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      border-top: 1px solid #eee;
+    }
+    
+    .dropdown-menu.active {
+      max-height: 250px;
+    }
+    
+    .dropdown-menu a {
+      display: block;
+      padding: 18px 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #eee;
+      transition: all 0.3s ease;
+    }
+    
+    .dropdown-menu a:hover {
+      background-color: #f8f8f8;
+      color: #ff6b35;
+      padding-left: 30px;
+    }
+    
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    /* Banner responsive */
+    .banner {
+      width: 100%;
+      overflow: hidden;
+      background-color: #f0c14b;
+      padding: 8px 0;
+    }
+
+    .banner marquee {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    /* Container responsive */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    /* Contact page specific styling - Responsive */
+    .contact-content h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: black;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 25px;
+      letter-spacing: 1px;
+    }
+
+    .contact-intro p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      color: #333;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 35px auto;
+      padding: 0 10px;
+    }
+
+    .send-message-section {
+      background-color: #f9f9f9;
+      padding: 30px 20px;
+      border-radius: 15px;
+      margin: 30px 0;
+      text-align: center;
+      border: 2px solid #f0c14b;
+    }
+
+    .send-message-section h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: black;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #333;
+      font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 15px 12px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background-color: white;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #f0c14b;
+      box-shadow: 0 0 0 3px rgba(240, 193, 75, 0.1);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .submit-btn {
+      background-color: #f0c14b;
+      color: #333;
+      padding: 15px 30px;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      width: 100%;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .submit-btn:hover {
+      background-color: #e6b532;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(240, 193, 75, 0.3);
+    }
+
+    /* Get in Touch Section - Responsive */
+    .get-in-touch-section {
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .get-in-touch-section h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: black;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .contact-info-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .contact-info-item {
+      background: white;
+      padding: 25px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .contact-info-item:hover {
+      transform: translateY(-5px);
+      border-color: #f0c14b;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .contact-info-item h3 {
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .contact-info-item h3 i {
+      color: #f0c14b;
+      font-size: 1.3rem;
+    }
+
+    .contact-info-item p {
+      color: #666;
+      font-size: 1.1rem;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    .contact-info-item small {
+      color: #999;
+      font-size: 0.9rem;
+    }
+
+    /* Follow Us Section - Responsive */
+    .follow-us-section {
+      margin: 40px 0;
+      text-align: center;
+      background-color: #f8f8f8;
+      padding: 30px 20px;
+      border-radius: 15px;
+    }
+
+    .follow-us-section h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: black;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    .social-updates p {
+      color: #666;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      padding: 10px;
+      background: white;
+      border-radius: 8px;
+      border-left: 4px solid #f0c14b;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 15px 30px;
+      background-color: #f0c14b;
+      color: #333;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 1rem;
+    }
+
+    .back-button:hover {
+      background-color: #e6b532;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(240, 193, 75, 0.3);
+    }
+
+    /* Footer responsive */
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      background-color: #333;
+      color: white;
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: #f0c14b;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #e6b532;
+    }
+
+    /* Tablet styles */
+    @media (min-width: 768px) {
+      .logo {
+        font-size: 2.2rem;
+        letter-spacing: 2px;
+      }
+
+      .banner marquee {
+        font-size: 1rem;
+      }
+
+      .contact-content h1 {
+        font-size: 2.5rem;
+      }
+
+      .send-message-section {
+        padding: 40px 30px;
+      }
+
+      .send-message-section h2 {
+        font-size: 2rem;
+      }
+
+      .contact-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+      }
+
+      .contact-intro p {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* Desktop styles */
+    @media (min-width: 1024px) {
+      header {
+        padding: 20px 20px;
+      }
+
+      .logo {
+        font-size: 2.5rem;
+      }
+
+      .send-message-section {
+        padding: 50px 40px;
+      }
+
+      .contact-info-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hamburger-menu {
+        padding: 10px;
+      }
+
+      .cart-icon {
+        width: 32px;
+        height: 32px;
+      }
+    }
+
+    /* Extra small mobile devices */
+    @media (max-width: 480px) {
+      .logo {
+        font-size: 1.4rem;
+        letter-spacing: 0.5px;
+      }
+
+      .hamburger-menu {
+        width: 35px;
+        height: 35px;
+      }
+
+      .hamburger-menu span {
+        width: 20px;
+        height: 2px;
+      }
+
+      .cart-icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      .banner marquee {
+        font-size: 0.8rem;
+      }
+
+      .contact-content h1 {
+        font-size: 1.6rem;
+      }
+
+      .send-message-section {
+        padding: 20px 15px;
+        margin: 20px 0;
+      }
+
+      .send-message-section h2 {
+        font-size: 1.4rem;
+      }
+
+      .get-in-touch-section h2,
+      .follow-us-section h2 {
+        font-size: 1.4rem;
+      }
+
+      .contact-intro p {
+        font-size: 1rem;
+        padding: 0 5px;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        padding: 12px 10px;
+      }
+
+      .contact-info-item {
+        padding: 20px 15px;
+      }
+
+      .follow-us-section {
+        padding: 20px 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Running banner -->
+<div class="banner">
+  <marquee>Welcome to Sony's Pickle - Made with love • No chemical preservatives added • Taste the South Indian tradition with Sony's Pickle <span class="highlight">Order yours now</span> before it's sold out!</marquee>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-main">
+    <div class="hamburger-menu" onclick="toggleDropdown()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="logo">Sony's Pickle</div>
+    <img src="cart-icon.jpeg" alt="Cart" class="cart-icon">
+  </div>
+  
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a href="index.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="container">
+  <div class="contact-content">
+    <h1>Contact Us</h1>
+    
+    <div class="contact-intro">
+      <p>We'd love to hear from you! Have a question about our products, need help with an order, or just want to share how much you enjoyed our pickles? We are only a message away. Don't hesitate to reach out. Your words mean the world to us.</p>
+    </div>
+
+    <!-- Send Us a Message Section -->
+    <div class="send-message-section">
+      <h2>Send Us a Message</h2>
+      <div class="contact-form">
+        <form action="#" method="POST">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+
+          <div class="form-group">
+            <label for="subject">Subject *</label>
+            <select id="subject" name="subject" required>
+              <option value="">Select a topic</option>
+              <option value="order">Order Inquiry</option>
+              <option value="product">Product Information</option>
+              <option value="shipping">Shipping & Delivery</option>
+              <option value="feedback">Feedback</option>
+              <option value="wholesale">Wholesale Orders</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message *</label>
+            <textarea id="message" name="message" rows="5" placeholder="Tell us how we can help you..." required></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Get In Touch Section -->
+    <div class="get-in-touch-section">
+      <h2>Get In Touch</h2>
+      
+      <div class="contact-info-grid">
+        <div class="contact-info-item">
+          <h3><i class="fas fa-phone"></i> Phone</h3>
+          <p>82200 72473</p>
+
+        </div>
+
+        <div class="contact-info-item">
+          <h3><i class="fas fa-envelope"></i> Email</h3>
+          <p>www.sonyspickle@gmail.com</p>
+          <small>We'll get back to you soon!</small>
+        </div>
+
+        <div class="contact-info-item">
+          <h3><i class="fas fa-map-marker-alt"></i>📍Address</h3>
+          <p>Kanyakumari, India</p>
+          <small>Delivering across India</small>
+        </div>
+
+        <div class="contact-info-item">
+          <h3><i class="fas fa-clock"></i> Business Hours</h3>
+          <p>Monday - Sunday<br>9:00 AM to 9:00 PM</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Follow Us Section -->
+    <div class="follow-us-section">
+      <h2>Follow Us</h2>
+      <div class="social-updates">
+        <p>📱 Follow us on Instagram for daily updates</p>
+        <p>📺 Subscribe to our YouTube channel @sonyspickle</p>
+        <p>📧 Join our newsletter for exclusive offers</p>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-button">← Back to Shop</a>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="container">
+  <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
+</footer>
+
+<script>
+// Dropdown menu toggle function
+function toggleDropdown() {
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  dropdownMenu.classList.toggle('active');
+}
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+  const dropdown = document.getElementById('dropdownMenu');
+  const hamburger = document.querySelector('.hamburger-menu');
+  
+  if (!hamburger.contains(event.target) && !dropdown.contains(event.target)) {
+    dropdown.classList.remove('active');
+  }
+});
+
+// Enhanced form validation
+document.querySelector('form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Get form values
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const subject = document.getElementById('subject').value;
+  const message = document.getElementById('message').value.trim();
+  
+  // Basic validation
+  if (!name || !email || !subject || !message) {
+    alert('Please fill in all required fields.');
+    return;
+  }
+  
+  // Email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+  
+  // Success message
+  alert('Thank you for your message! We will get back to you within 24 hours.');
+  
+  // Reset form
+  this.reset();
+});
+
+// Add smooth scrolling for better UX
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

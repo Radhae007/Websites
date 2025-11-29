@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sony's Pickle - Premium Prawn Pickle</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #faf8f5 0%, #f5f1eb 100%);
+      color: #000000;
+      line-height: 1.6;
+    }
+
+    /* Running header */
+    .banner {
+      width: 100%;
+      overflow: hidden;
+      background: linear-gradient(90deg, #f1c40f 0%, #f39c12 50%, #f1c40f 100%);
+      padding: 12px 0;
+      position: relative;
+    }
+    .banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .banner marquee {
+      font-size: 1rem;
+      font-weight: 600;
+      color: white;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+      z-index: 1;
+      position: relative;
+    }
+
+    header {
+      padding: 20px 30px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(241, 196, 15, 0.1);
+    }
+
+    .header-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hamburger-menu {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      padding: 8px;
+      width: 40px;
+      height: 40px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+    .hamburger-menu:hover {
+      background: rgba(241, 196, 15, 0.1);
+    }
+    .hamburger-menu span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background: linear-gradient(90deg, #f1c40f, #f39c12);
+      margin: 3px 0;
+      transition: 0.3s;
+      border-radius: 2px;
+    }
+
+    /* Hamburger animation */
+    .hamburger-menu.active span:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+    .hamburger-menu.active span:nth-child(2) { opacity: 0; }
+    .hamburger-menu.active span:nth-child(3) { transform: rotate(45deg) translate(-5px, -6px); }
+
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      text-align: center;
+      flex: 1;
+      color: #000000;
+    }
+
+    .cart {
+      position: relative;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      color: #000000;
+    }
+    .cart:hover {
+      background: rgba(241, 196, 15, 0.1);
+      transform: translateY(-1px);
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -2px;
+      right: -2px;
+      background: linear-gradient(135deg, #f1c40f, #f39c12);
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 12px;
+      min-width: 20px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(241, 196, 15, 0.3);
+    }
+    .cart-count.hidden { display: none; }
+
+    .dropdown-menu {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      z-index: 999;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      border-radius: 0 0 12px 12px;
+    }
+    .dropdown-menu.active { 
+      max-height: 250px; 
+    }
+    .dropdown-menu a {
+      display: block;
+      padding: 18px 30px;
+      text-decoration: none;
+      color: #000000;
+      border-bottom: 1px solid rgba(241, 196, 15, 0.1);
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+    .dropdown-menu a:hover {
+      background: rgba(241, 196, 15, 0.05);
+      color: #000000;
+      padding-left: 40px;
+    }
+
+    /* Product layout */
+    .product-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: center;
+      margin: 40px 20px;
+      gap: 40px;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .product-image {
+      flex: 1;
+      min-width: 350px;
+      text-align: center;
+    }
+    .product-image img {
+      max-width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 20px;
+      box-shadow: 0 12px 40px rgba(241, 196, 15, 0.15);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .product-image img:hover {
+      transform: scale(1.02);
+    }
+
+    .product-details {
+      flex: 1;
+      min-width: 350px;
+    }
+
+    .product-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+
+    .product-subtitle {
+      font-size: 1.1rem;
+      color: #000000;
+      margin-bottom: 25px;
+      font-style: italic;
+    }
+
+    .pricing {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      border: 1px solid rgba(241, 196, 15, 0.1);
+    }
+
+    .pricing h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #000000;
+    }
+
+    .price-row {
+      display: flex;
+      gap: 20px;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+    }
+
+    .price-card {
+      flex: 1;
+      min-width: 150px;
+      max-width: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: white;
+      padding: 16px 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    .price-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(241, 196, 15, 0.15);
+      border-color: rgba(241, 196, 15, 0.2);
+    }
+
+    .price-info {
+      font-weight: 600;
+      color: #000000;
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+    }
+
+    .price-card button {
+      background: linear-gradient(135deg, #f1c40f 0%, #f39c12 100%);
+      color: #000000;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(241, 196, 15, 0.3);
+    }
+    .price-card button:hover { 
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(241, 196, 15, 0.4);
+    }
+    .price-card button:active {
+      transform: translateY(0);
+    }
+
+    /* Additional sections styling */
+    .storage-section,
+    .ingredients-section,
+    .best-with-section {
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      border: 1px solid rgba(241, 196, 15, 0.1);
+    }
+
+    .storage-section h3,
+    .ingredients-section h3,
+    .best-with-section h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #000000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .storage-list,
+    .best-with-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .storage-list li,
+    .best-with-list li {
+      padding: 8px 0;
+      padding-left: 25px;
+      position: relative;
+      color: #000000;
+    }
+
+    .storage-list li::before,
+    .best-with-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #f39c12;
+      font-weight: bold;
+    }
+
+    .ingredients-text {
+      color: #000000;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .product-section {
+        flex-direction: column;
+      }
+      .price-row {
+        flex-direction: column;
+        align-items: center;
+      }
+      .price-card {
+        width: 100%;
+        max-width: none;
+      }
+      .product-title {
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Running Banner -->
+<div class="banner">
+  <marquee><strong>🦐 Welcome to Sony's Pickle - Premium Prawn Pickle • Made with Love & Traditional Spices • No Chemical Preservatives • Limited Stock - Order Now! 🦐</strong></marquee>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-main">
+    <div class="hamburger-menu" id="hamburgerMenu">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="logo">Sony's Pickle</div>
+    <div class="cart" onclick="window.location.href='cart.html'">
+      <i class="fas fa-shopping-cart"></i>
+      <span class="cart-count hidden" id="cart-count">0</span>
+    </div>
+  </div>
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a href="index.html"><i class="fas fa-home"></i> Shop</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+    <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+    <a href="reviews.html"><i class="fas fa-star"></i> Reviews</a>
+  </div>
+</header>
+
+<!-- Product Section -->
+<section class="product-section">
+  <div class="product-image">
+    <img id="product-image" src="images/prawn.png" alt="Premium Prawn Pickle">
+  </div>
+
+  <div class="product-details">
+    <h1 class="product-title">Premium Prawn Pickle</h1>
+    <p class="product-subtitle">Fresh Kerala prawns pickled with traditional spices and aromatic herbs</p>
+
+    <!-- Pricing Section -->
+    <div class="pricing">
+      <h3><i class="fas fa-tag"></i> Choose Your Size</h3>
+      <div class="price-row">
+        <div class="price-card">
+          <div class="price-info">250g - ₹320</div>
+          <button class="add-to-cart" data-product="Premium Prawn Pickle" data-size="250g" data-price="320">Add to Cart</button>
+        </div>
+        <div class="price-card">
+          <div class="price-info">500g - ₹600</div>
+          <button class="add-to-cart" data-product="Premium Prawn Pickle" data-size="500g" data-price="600">Add to Cart</button>
+        </div>
+        <div class="price-card">
+          <div class="price-info">1kg - ₹1150</div>
+          <button class="add-to-cart" data-product="Premium Prawn Pickle" data-size="1kg" data-price="1150">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Storage Instructions -->
+    <div class="storage-section">
+      <h3><i class="fas fa-archive"></i> Storage Instructions</h3>
+      <ul class="storage-list">
+        <li>Retain the oil on the top, that golden layer keeps your pickle fresh and flavorful</li>
+        <li>No fridge? No problem! Stays fresh for 6+ months without refrigeration</li>
+        <li>Use a clean and dry spoon for serving</li>
+        <li>Close the lid tightly after every use</li>
+      </ul>
+    </div>
+
+    <!-- Ingredients -->
+    <div class="ingredients-section">
+      <h3><i class="fas fa-list"></i> Contains</h3>
+      <p class="ingredients-text">Fresh Kerala Prawns, Coconut Oil, Ginger, Garlic, Curry Leaves, Red Chili, Turmeric, Fenugreek, and Premium South Indian Spices</p>
+    </div>
+
+    <!-- Goes Best With -->
+    <div class="best-with-section">
+      <h3><i class="fas fa-utensils"></i> Goes Best With</h3>
+      <ul class="best-with-list">
+        <li>Steamed Rice</li>
+        <li>Parathas, Roti's, Dosas, Idlies</li>
+        <li>Curd Rice, Bread and even Briyani</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<script>
+// Initialize cart from localStorage
+let cartItems = JSON.parse(localStorage.getItem('sonysPickleCart')) || [];
+
+function updateCartDisplay() {
+  let cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const countElement = document.getElementById('cart-count');
+  if (cartCount > 0) {
+    countElement.textContent = cartCount;
+    countElement.classList.remove('hidden');
+  } else {
+    countElement.classList.add('hidden');
+  }
+}
+
+// Initialize cart display
+updateCartDisplay();
+
+function toggleDropdown() {
+  const menu = document.getElementById('dropdownMenu');
+  const hamburger = document.getElementById('hamburgerMenu');
+  
+  menu.classList.toggle('active');
+  hamburger.classList.toggle('active');
+}
+
+// Setup hamburger menu
+document.getElementById('hamburgerMenu').addEventListener('click', toggleDropdown);
+
+// Cart functionality
+const buttons = document.querySelectorAll(".add-to-cart");
+
+buttons.forEach(button => {
+  button.addEventListener("click", (e) => {
+    const product = e.target.dataset.product;
+    const size = e.target.dataset.size;
+    const price = parseInt(e.target.dataset.price);
+    
+    // Check if item already exists
+    const existingItemIndex = cartItems.findIndex(item => 
+      item.product === product && item.size === size
+    );
+    
+    if (existingItemIndex > -1) {
+      cartItems[existingItemIndex].quantity += 1;
+    } else {
+      cartItems.push({ product, size, price, quantity: 1 });
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('sonysPickleCart', JSON.stringify(cartItems));
+    
+    // Update cart display
+    updateCartDisplay();
+    
+    // Button animation feedback
+    const originalText = button.textContent;
+    button.textContent = 'Added!';
+    button.style.background = 'linear-gradient(135deg, #27ae60, #2ecc71)';
+    
+    setTimeout(() => {
+      button.textContent = originalText;
+      button.style.background = 'linear-gradient(135deg, #f1c40f 0%, #f39c12 100%)';
+    }, 1500);
+    
+    // Add some visual feedback
+    button.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      button.style.transform = '';
+    }, 150);
+  });
+});
+
+// Animation frames
+const frames = [
+  'images/prawn.png',
+  'images/jar-3-4.jpeg',
+  'images/jar-half.jpeg',
+  'images/jar-1-4.jpeg',
+  'images/jar-empty.png'
+];
+
+// Product image animation
+const productImage = document.getElementById('product-image');
+let animationInterval;
+
+productImage.addEventListener('mouseenter', () => {
+  let i = 0;
+  animationInterval = setInterval(() => {
+    productImage.src = frames[i];
+    i = (i + 1) % frames.length;
+  }, 400);
+});
+
+productImage.addEventListener('mouseleave', () => {
+  clearInterval(animationInterval);
+  productImage.src = frames[0]; // reset to full jar
+});
+
+// Close dropdown when clicking outside
+document.addEventListener('click', function(event) {
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  const hamburgerMenu = document.getElementById('hamburgerMenu');
+  
+  if (!hamburgerMenu.contains(event.target) && !dropdownMenu.contains(event.target)) {
+    dropdownMenu.classList.remove('active');
+    hamburgerMenu.classList.remove('active');
+  }
+});
+
+// Smooth scroll behavior for better UX
+document.documentElement.style.scrollBehavior = 'smooth';
+
+// Sync cart across tabs
+window.addEventListener('storage', function(e) {
+  if (e.key === 'sonysPickleCart') {
+    try { 
+      cartItems = JSON.parse(localStorage.getItem('sonysPickleCart')) || []; 
+    } catch (err) { 
+      cartItems = []; 
+    }
+    updateCartDisplay();
+  }
+});
+
+window.addEventListener('focus', function() {
+  try { 
+    cartItems = JSON.parse(localStorage.getItem('sonysPickleCart')) || []; 
+  } catch (err) { 
+    cartItems = []; 
+  }
+  updateCartDisplay();
+});
+</script>
+
+</body>
+</html>

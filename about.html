@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About - Sony's Pickle</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+    
+    .banner marquee .highlight {
+      background-color: #ff6b35;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Header styling */
+    header {
+      padding: 15px 20px;
+      position: relative;
+      border-bottom: 1px solid #eee;
+    }
+
+    .header-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      position: relative;
+    }
+    
+    .hamburger-menu {
+      cursor: pointer;
+      z-index: 1000;
+      padding: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .hamburger-menu span {
+      display: block;
+      width: 25px;
+      height: 3px;
+      background-color: black;
+      margin: 4px 0;
+      transition: 0.3s;
+    }
+    
+    .logo {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: black;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-align: center;
+      flex: 1;
+    }
+    
+    .cart-icon {
+      width: 28px;
+      height: 28px;
+      cursor: pointer;
+    }
+    
+    .dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      z-index: 999;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+    
+    .dropdown-menu.active {
+      max-height: 200px;
+    }
+    
+    .dropdown-menu a {
+      display: block;
+      padding: 15px 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #eee;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    .dropdown-menu a:hover {
+      background-color: #f8f8f8;
+      color: #ff6b35;
+    }
+    
+    .dropdown-menu a:last-child {
+      border-bottom: none;
+    }
+
+    /* About page specific styling */
+    .about-content h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: black;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+
+    .about-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      color: #333;
+      text-align: justify;
+    }
+
+    .heart-emoji {
+      color: #ff6b35;
+      font-size: 1.2em;
+    }
+
+    /* FAQ Section Styling */
+    .faq-section {
+      margin-top: 50px;
+      padding-top: 40px;
+      border-top: 2px solid #f0f0f0;
+    }
+
+    .faq-section h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: black;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 40px;
+      letter-spacing: 1px;
+    }
+
+    .faq-item {
+      margin-bottom: 25px;
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+      background-color: #f5f5f5;
+    }
+
+    .faq-question {
+      background-color: #f0c14b;
+      color: #333;
+      padding: 15px 20px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .faq-question:hover {
+      background-color: #e6b532;
+    }
+
+    .faq-question .toggle-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question .toggle-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      background-color: white;
+    }
+
+    .faq-item.active .faq-answer {
+      padding: 20px;
+      max-height: 200px;
+    }
+
+    .faq-answer p {
+      margin: 0;
+      color: #333;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: #f0c14b;
+      color: #333;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #e6b532;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .logo {
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+      }
+
+      .cart-icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      .about-content h1 {
+        font-size: 2rem;
+      }
+
+      .faq-section h2 {
+        font-size: 1.5rem;
+      }
+
+      .faq-question {
+        font-size: 1rem;
+        padding: 12px 15px;
+      }
+
+      .faq-item.active .faq-answer {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Running banner -->
+<div class="banner">
+  <marquee>Welcome to Sony's Pickle - Made with love • No chemical preservatives added • Taste the South Indian tradition with Sony's Pickle <span class="highlight">Order yours now</span> before it's sold out!</marquee>
+</div>
+
+<!-- Header -->
+<header>
+  <div class="header-main">
+    <div class="hamburger-menu" onclick="toggleDropdown()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="logo">More Than Just Pickles</div>
+    <img src="cart-icon.jpeg" alt="Cart" class="cart-icon">
+  </div>
+  
+  <div class="dropdown-menu" id="dropdownMenu">
+    <a href="index.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main class="container">
+  <div class="about-content">
+    
+    <p>Every recipe has a story, and every jar of Sony's Pickle carries a piece of ours. It all began in a small kitchen where Sony, with nothing more than her love for cooking and a handful of secret family recipes, started experimenting with flavors...</p>
+    
+    <p>At Sony's Pickle, we believe good food should be honest...</p>
+    
+    <p>For us, these aren't just pickles. They're memories...</p>
+    
+    <p>Because at the end of the day, we don't just want to fill your plates, we want to fill your hearts. <span class="heart-emoji">❤️</span></p>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <h2>Frequently Asked Questions</h2>
+      
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          Are your pickles made with chemical preservatives?
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Not at all 😊 Our pickles are made fresh in small batches with zero chemical preservatives...</p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          Do your pickles need refrigeration?
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>No ❌ There's no need to refrigerate our pickles...</p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          How long do the pickles stay good?
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Our pickles stay tasty for up to 6 months...</p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          Do you deliver all over India?
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! 🚚 We deliver across India</p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          How soon will I get my order?
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Orders are processed within 2–3 working days and delivery usually takes 4–7 days depending on your location</p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          What's the difference between Standard Chicken Pickle and Premium Boneless Chicken Pickle?
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>The Standard has bone-in chicken pieces...</p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          Do you make vegetarian products too?
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Yes! Alongside our non-veg pickles, we also offer Sony's Coconut Gunpowder and Kanyakumari Special Banana Chips</p>
+        </div>
+      </div>
+
+      <div class="faq-item" onclick="toggleFaq(this)">
+        <div class="faq-question">
+          Can I place bulk or party orders?
+          <span class="toggle-icon">+</span>
+        </div>
+        <div class="faq-answer">
+          <p>Of course! 🎉 Whether it's for family gatherings...</p>
+        </div>
+      </div>
+    </div>
+    
+    <a href="index.html" class="back-button">← Back to Shop</a>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="container">
+  <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
+</footer>
+
+<script>
+function toggleDropdown() {
+  const dropdownMenu = document.getElementById('dropdownMenu');
+  dropdownMenu.classList.toggle('active');
+}
+
+function toggleFaq(faqItem) {
+  const allFaqItems = document.querySelectorAll('.faq-item');
+  allFaqItems.forEach(item => {
+    if (item !== faqItem) {
+      item.classList.remove('active');
+    }
+  });
+  faqItem.classList.toggle('active');
+}
+</script>
+
+</body>
+</html>
